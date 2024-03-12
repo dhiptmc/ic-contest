@@ -36,7 +36,7 @@ assign finalcheck [2] = ( index[2] == 3'd2 ) ? 1'b1 : 1'b0;
 assign finalcheck [1] = ( index[1] == 3'd1 ) ? 1'b1 : 1'b0;
 assign finalcheck [0] = ( index[0] == 3'd0 ) ? 1'b1 : 1'b0;
 
-always@(posedge clk or posedge rst)
+always@(posedge CLK or posedge RST)
 begin
     if(rst)
     begin
@@ -56,19 +56,19 @@ begin
         end
         tableflag <= 1'b0;
 
-        index[7] <= 3'd0
-        index[6] <= 3'd1
-        index[5] <= 3'd2
-        index[4] <= 3'd3
-        index[3] <= 3'd4
-        index[2] <= 3'd5
-        index[1] <= 3'd6
-        index[0] <= 3'd7
+        index[7] <= 3'd0;
+        index[6] <= 3'd1;
+        index[5] <= 3'd2;
+        index[4] <= 3'd3;
+        index[3] <= 3'd4;
+        index[2] <= 3'd5;
+        index[1] <= 3'd6;
+        index[0] <= 3'd7;
 
-        mincost <= 10'd0;
-        mincount <= 4'd1;
+        minicost <= 10'd0;
+        minicount <= 4'd1;
         
-        i = 0;
+        i <= 0;
         changeflag <= 1'b0;
     end
     else
@@ -108,8 +108,8 @@ begin
             begin
                 if( costtotal < minicost )
                 begin
-                    minicost <= costtotal
-                    minicount <= 4'd1;
+                    minicost <= costtotal;
+                    minicount<= 4'd1;
                 end
                 else
                 begin
@@ -155,12 +155,12 @@ begin
         begin
             MatchCount <= minicount;
             MinCost <= minicost;
-            valid <= 1'b1;
+            Valid <= 1'b1;
         end
 
         default:
         begin
-            valid <= 1'b0;
+            Valid <= 1'b0;
         end
 
         endcase
